@@ -9,7 +9,11 @@ def track():
 
     today = f"{datetime.datetime.now():%Y-%m-%d}"
 
-    print("today is " + today + ". The most recent data we have is from " + recent)
+    print("today is " + today
+    if (recent == None):
+        print("this appears to be the first time you've tracked your goals")
+    else:
+        print("The most recent data we have is from " + recent)
     day = input("what date would you like to report on? ")
     if day.lower() in ["", "today", "t"]:
         day = today
@@ -24,9 +28,9 @@ def promptByDay(day, goals):
     dailyGoals = {}
     for goal in goals:
         answer = input("did you " + goal + " today? 'Y' or 'N' ")
-        if answer in ["Y", "y", "yes", "Yes"]:
+        if answer.lower() in ["y", "yes", "yup"]:
             dailyGoals[goal] = True
-        elif answer in ["N", "n", "no", "No"]:
+        elif answer.lower() in ["n", "no"]:
             dailyGoals[goal] = False
         else:
             print("sorry, not valid. you may need to resubmit for this day")
