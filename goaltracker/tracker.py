@@ -9,7 +9,7 @@ def track():
 
     today = f"{datetime.datetime.now():%Y-%m-%d}"
 
-    print("today is " + today
+    print("today is " + today)
     if recent == None:
         print("this appears to be the first time you've tracked your goals")
     else:
