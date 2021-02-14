@@ -1,7 +1,5 @@
 import json
 
-goalsFilePath = 'C:\\Users\\gilei\\Projects\\goaltracker-cli\\goaltracker\\data\\goals.json'
-
 def setup():
     done = False
     try:
@@ -35,6 +33,11 @@ def setup():
             done = True
 
 def saveGoals(goals):
-    with open(goalsFilePath, 'w') as outfile:
+    with open(goalsFilePath(), 'w') as outfile:
         json.dump(goals, outfile)
+
+def goalsFilePath():
+    returnee = os.path.join(os.path.dirname(__file__), 'data','goals.json')
+    print(returnee)
+    return returnee
     
