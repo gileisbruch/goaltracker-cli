@@ -8,15 +8,19 @@ def track():
     recent = mostRecent(days)
 
     today = f"{datetime.datetime.now():%Y-%m-%d}"
+    yesterday = f"{(datetime.datetime.now() - datetime.timedelta(1)):%Y-%m-%d}"
 
     print("today is " + today)
+    print("yesterday was " + yesterday)
     if recent == None:
         print("this appears to be the first time you've tracked your goals")
     else:
         print("The most recent data we have is from " + recent)
     day = input("what date would you like to report on? ")
-    if day.lower() in ["", "today", "t"]:
+    if day.lower() in ["today", "t"]:
         day = today
+    elif day.lower() in ["yesterday", "y"]:
+        day = yesterday
     
 
     dailyGoals = promptByDay(day, goals)
@@ -25,6 +29,7 @@ def track():
     saveData(days)
 
 def promptByDay(day, goals):
+    print("ok, answer these questions about " + day)
     dailyGoals = {}
     for goal in goals:
         answer = input("did you " + goal + " today? 'Y' or 'N' ")
